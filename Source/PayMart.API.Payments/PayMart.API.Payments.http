@@ -1,0 +1,6 @@
+@PayMart.API.Payments_HostAddress = http://localhost:5285
+
+GET {{PayMart.API.Payments_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
