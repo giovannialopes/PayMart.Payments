@@ -1,4 +1,5 @@
 using PayMart.Infrastructure.Payments.Injection;
+using PayMart.Infrastructure.Payments.Migrations;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,4 +26,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+await MigrateDB();
+
 app.Run();
+
+async Task MigrateDB()
+{
+    await using var scope = app.Services.CreateAsyncScope();
+    await DataBaseMigration.MigrateDataBase(scope.ServiceProvider);
+}
