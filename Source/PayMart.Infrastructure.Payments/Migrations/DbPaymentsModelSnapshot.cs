@@ -35,6 +35,12 @@ namespace PayMart.Infrastructure.Payments.Migrations
                     b.Property<int>("PaymentType")
                         .HasColumnType("int");
 
+                    b.Property<decimal>("Price")
+                       .HasColumnType("decimal");
+
+                    b.Property<DateTime>("Date")
+                       .HasColumnType("DateTime");
+
                     b.HasKey("Id");
 
                     b.ToTable("Tb_Payment");

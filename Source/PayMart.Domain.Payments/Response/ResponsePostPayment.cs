@@ -1,9 +1,9 @@
-﻿using PayMart.Domain.Payments.Enums;
-
+﻿
 namespace PayMart.Domain.Payments.Response;
 
 public class ResponsePostPayment
 {
-    public string Description { get; set; } = "";
-
+    public string PaymentType { get; set; } = "";
+    public DateTime DateTime { get; set; }
+    public decimal Price { get; set; }
 }
