@@ -9,11 +9,15 @@ namespace PayMart.API.Payments.Controllers;
 public class PaymentController : ControllerBase
 {
     [HttpPost]
-    [Route("post")]
+    [Route("post/{price}/{ProductID}")]
     public async Task<IActionResult> Post(
         [FromServices] IPostPaymentUseCases useCases,
-        [FromBody] RequestPostPayment request)
+        [FromBody] RequestPostPayment request,
+        [FromRoute]decimal price, int productID)
     {
+        request.OrderID = productID;
+        request.Price = price;
+
         var response = await useCases.Execute(request);
         return Ok(response);
     }

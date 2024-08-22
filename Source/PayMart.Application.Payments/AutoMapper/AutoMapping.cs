@@ -20,6 +20,6 @@ public class AutoMapping : Profile
 
     public void EntityToResponse()
     {
-        CreateMap<ResponsePostPayment, Payment>();
+        CreateMap<Payment, ResponsePostPayment>();
     }
 }

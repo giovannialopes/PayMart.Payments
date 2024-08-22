@@ -31,12 +31,7 @@ public class PostPaymentUseCases : IPostPaymentUseCases
 
         await _commit.Commit();
 
-        return new ResponsePostPayment
-        {
-            PaymentType = request.PaymentType.Convert(),
-            Price = 0,
-            DateTime = DateTime.Now
-            
-        };
+        return _mapper.Map<ResponsePostPayment>(Payment);
+
     }
 }
