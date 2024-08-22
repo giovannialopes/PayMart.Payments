@@ -34,7 +34,9 @@ public class PostPaymentUseCases : IPostPaymentUseCases
         return new ResponsePostPayment
         {
             PaymentType = request.PaymentType.Convert(),
-            Price = 0
+            Price = 0,
+            DateTime = DateTime.Now
+            
         };
     }
 }
