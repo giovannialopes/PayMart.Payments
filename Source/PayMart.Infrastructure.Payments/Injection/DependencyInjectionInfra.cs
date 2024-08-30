@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using PayMart.Domain.Payments.Interface.Database;
-using PayMart.Domain.Payments.Interface.Payment.Post;
+using PayMart.Domain.Payments.Interface.Repositories;
 using PayMart.Infrastructure.Payments.DataBase;
 using PayMart.Infrastructure.Payments.Repositories;
 
@@ -18,7 +18,7 @@ public static class DependencyInjectionInfra
 
     public static void AddRepositories(IServiceCollection services)
     {
-        services.AddScoped<IPost, PaymentRepository>();
+        services.AddScoped<IPaymentRepository, PaymentRepository>();
     }
 
     public static void DbContext(IServiceCollection services, IConfiguration configuration)

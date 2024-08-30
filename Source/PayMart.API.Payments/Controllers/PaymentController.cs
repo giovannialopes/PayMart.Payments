@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PayMart.Application.Payments.UseCases.Post;
-using PayMart.Domain.Payments.Request;
+using PayMart.Domain.Payments.Model;
+using PayMart.Domain.Payments.Services.Post;
 
 namespace PayMart.API.Payments.Controllers;
 
@@ -9,16 +9,17 @@ namespace PayMart.API.Payments.Controllers;
 public class PaymentController : ControllerBase
 {
     [HttpPost]
-    [Route("post/{price}/{ProductID}")]
+    [Route("post/{price}")]
     public async Task<IActionResult> Post(
-        [FromServices] IPostPaymentUseCases useCases,
-        [FromBody] RequestPostPayment request,
-        [FromRoute]decimal price, int productID)
+        [FromServices] IRegisterPayment services,
+        [FromBody] ModelPayment.CreatePaymentRequest request,
+        [FromRoute]decimal price, int productID, int userID)
     {
-        request.OrderID = productID;
-        request.Price = price;
+        request.OrderId = productID;
+        request.AmountPaid = price;
+        request.UserId = userID;
 
-        var response = await useCases.Execute(request);
+        var response = await services.Execute(request);
         return Ok(response);
     }
 }

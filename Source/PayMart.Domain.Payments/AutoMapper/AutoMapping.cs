@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using PayMart.Domain.Payments.Entities;
-using PayMart.Domain.Payments.Request;
-using PayMart.Domain.Payments.Response;
+using PayMart.Domain.Payments.Model;
 
 namespace PayMart.Application.Payments.AutoMapper;
 
@@ -15,11 +14,11 @@ public class AutoMapping : Profile
 
     public void RequestToEntity()
     {
-        CreateMap<RequestPostPayment, Payment>();
+        CreateMap<ModelPayment.CreatePaymentRequest, Payment>();
     }
 
     public void EntityToResponse()
     {
-        CreateMap<Payment, ResponsePostPayment>();
+        CreateMap<Payment, ModelPayment.PaymentResponse>();
     }
 }

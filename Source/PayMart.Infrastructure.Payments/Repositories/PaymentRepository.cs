@@ -1,23 +1,13 @@
 ﻿using PayMart.Domain.Payments.Entities;
-using PayMart.Domain.Payments.Interface.Database;
-using PayMart.Domain.Payments.Interface.Payment.Post;
+using PayMart.Domain.Payments.Interface.Repositories;
 using PayMart.Infrastructure.Payments.DataBase;
 
 namespace PayMart.Infrastructure.Payments.Repositories;
 
-public class PaymentRepository:
-    ICommit,
-    IPost
+public class PaymentRepository(DbPayments payments) : IPaymentRepository
 {
-    private readonly DbPayments _dbPayments;
-    public PaymentRepository(DbPayments payments)
-    {
-        _dbPayments = payments;
-    }
+    public async Task Commit() => await payments.SaveChangesAsync();
 
-    public async Task Add(Payment payment) => await _dbPayments.Tb_Payment.AddAsync(payment);
-
-
-    public async Task Commit() => await _dbPayments.SaveChangesAsync();
+    public async Task Add(Payment payment) => await payments.Tb_Payment.AddAsync(payment);
 
 }

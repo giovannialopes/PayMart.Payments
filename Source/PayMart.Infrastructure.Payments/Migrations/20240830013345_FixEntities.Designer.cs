@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PayMart.Infrastructure.Payments.DataBase;
 
@@ -11,9 +12,11 @@ using PayMart.Infrastructure.Payments.DataBase;
 namespace PayMart.Infrastructure.Payments.Migrations
 {
     [DbContext(typeof(DbPayments))]
-    partial class DbPaymentsModelSnapshot : ModelSnapshot
+    [Migration("20240830013345_FixEntities")]
+    partial class FixEntities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

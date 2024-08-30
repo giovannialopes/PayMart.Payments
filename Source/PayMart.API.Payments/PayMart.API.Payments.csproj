@@ -19,7 +19,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\PayMart.Application.Payments\PayMart.Application.Payments.csproj" />
     <ProjectReference Include="..\PayMart.Domain.Payments\PayMart.Domain.Payments.csproj" />
     <ProjectReference Include="..\PayMart.Infrastructure.Payments\PayMart.Infrastructure.Payments.csproj" />
   </ItemGroup>

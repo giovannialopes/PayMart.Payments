@@ -1,12 +1,12 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using PayMart.Application.Payments.AutoMapper;
-using PayMart.Application.Payments.UseCases.Post;
+using PayMart.Domain.Payments.Services.Post;
 
-namespace PayMart.Application.Payments.Injection;
+namespace PayMart.Domain.Payments.Services.AInjection;
 
 public static class DependencyInjectionApp
 {
-    public static void AddApplication(this IServiceCollection services)
+    public static void AddServices(this IServiceCollection services)
     {
         AddRepositories(services);
         AutoMapper(services);
@@ -14,7 +14,7 @@ public static class DependencyInjectionApp
 
     private static void AddRepositories(IServiceCollection services)
     {
-        services.AddScoped<IPostPaymentUseCases, PostPaymentUseCases>();
+        services.AddScoped<IRegisterPayment, RegisterPayment>();
     }
 
     private static void AutoMapper(IServiceCollection services)
