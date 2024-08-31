@@ -14,7 +14,7 @@ public static class DependencyInjectionApp
 
     private static void AddRepositories(IServiceCollection services)
     {
-        services.AddScoped<IRegisterPayment, RegisterPayment>();
+        services.AddScoped<IPaymentServices, PaymentService>();
     }
 
     private static void AutoMapper(IServiceCollection services)

@@ -1,6 +1,6 @@
 ﻿using PayMart.Domain.Payments.Enums;
 
-namespace PayMart.Application.Payments.Utilities;
+namespace PayMart.Domain.Payments.Utilities;
 
 public static class ConvertEnumToString
 {

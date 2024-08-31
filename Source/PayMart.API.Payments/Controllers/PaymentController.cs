@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PayMart.Domain.Payments.Exceptions;
+using PayMart.Domain.Payments.Http.Order;
 using PayMart.Domain.Payments.Model;
 using PayMart.Domain.Payments.Services.Post;
+using PayMart.Domain.Payments.Utilities;
 
 namespace PayMart.API.Payments.Controllers;
 
@@ -9,17 +12,25 @@ namespace PayMart.API.Payments.Controllers;
 public class PaymentController : ControllerBase
 {
     [HttpPost]
-    [Route("post/{price}")]
-    public async Task<IActionResult> Post(
-        [FromServices] IRegisterPayment services,
+    [Route("post/{orderID}/{userID}")]
+    public async Task<IActionResult> RegisterPayment(
+        [FromServices] IPaymentServices services,
         [FromBody] ModelPayment.CreatePaymentRequest request,
-        [FromRoute]decimal price, int productID, int userID)
+        [FromRoute] int orderID,
+        [FromRoute] int userID)
     {
-        request.OrderId = productID;
-        request.AmountPaid = price;
-        request.UserId = userID;
+        RegisterRouteInRequest.Register(orderID, userID, request);
+        await HttpOrder.GetOrderByID(request);
 
-        var response = await services.Execute(request);
-        return Ok(response);
+        var validatePrice = services.ValidatePrice(request);
+        if (validatePrice == true)
+        {
+            var registerPayment = await services.RegisterPayment(request);
+            if (registerPayment == null)
+                return Ok(ResourceExceptions.PAGAMENTO_JÁ_EXISTENTE);
+
+            return Ok(registerPayment);
+        }
+        return Ok(ResourceExceptions.NAO_ATINGIU_PAGAMENTO);
     }
 }
