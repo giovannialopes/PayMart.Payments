@@ -11,6 +11,31 @@ namespace PayMart.API.Payments.Controllers;
 [ApiController]
 public class PaymentController : ControllerBase
 {
+    [HttpGet]
+    [Route("getAll")]
+    public async Task<IActionResult> GetPayment(
+    [FromServices] IPaymentServices services)
+    {
+        var response = await services.GetPayments();
+        if (response == null)
+            return Ok(ResourceExceptions.ERRO_NAO_POSSUI_PAGAMENTO);
+
+        return Ok(response);
+    }
+
+    [HttpGet]
+    [Route("getID/{id}")]
+    public async Task<IActionResult> GetID(
+    [FromServices] IPaymentServices services,
+    [FromRoute] int id)
+    {
+        var response = await services.GetPaymentById(id);
+        if (response == null)
+            return Ok(ResourceExceptions.ERRO_NAO_POSSUI_PAGAMENTO);
+
+        return Ok(response);
+    }
+
     [HttpPost]
     [Route("post/{orderID}/{userID}")]
     public async Task<IActionResult> RegisterPayment(

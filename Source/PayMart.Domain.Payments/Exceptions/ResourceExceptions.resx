@@ -117,10 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ERRO_NAO_POSSUI_PAGAMENTO" xml:space="preserve">
+    <value>Erro - Não possui pagamentos.</value>
+  </data>
   <data name="NAO_ATINGIU_PAGAMENTO" xml:space="preserve">
-    <value>O valor do pagamento não está correto com o valor do pedido.</value>
+    <value>Erro - O valor do pagamento não está correto com o valor do pedido.</value>
   </data>
   <data name="PAGAMENTO_JÁ_EXISTENTE" xml:space="preserve">
-    <value>Não é possível fazer o pagamento mais de uma vez.</value>
+    <value>Erro - Não é possível fazer o pagamento mais de uma vez.</value>
   </data>
 </root>

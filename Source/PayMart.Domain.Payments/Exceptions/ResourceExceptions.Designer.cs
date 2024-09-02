@@ -61,7 +61,16 @@ namespace PayMart.Domain.Payments.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O valor do pagamento não está correto com o valor do pedido..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro - Não possui pagamentos..
+        /// </summary>
+        public static string ERRO_NAO_POSSUI_PAGAMENTO {
+            get {
+                return ResourceManager.GetString("ERRO_NAO_POSSUI_PAGAMENTO", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro - O valor do pagamento não está correto com o valor do pedido..
         /// </summary>
         public static string NAO_ATINGIU_PAGAMENTO {
             get {
@@ -70,7 +79,7 @@ namespace PayMart.Domain.Payments.Exceptions {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a Não é possível fazer o pagamento mais de uma vez..
+        ///   Consulta uma cadeia de caracteres localizada semelhante a Erro - Não é possível fazer o pagamento mais de uma vez..
         /// </summary>
         public static string PAGAMENTO_JÁ_EXISTENTE {
             get {

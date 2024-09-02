@@ -34,4 +34,9 @@ public class ModelPayment
         public decimal AmountPaid { get; set; }
         public string Protocol {  get; set; } = string.Empty;
     }
+
+    public class ListPaymentResponse
+    {
+        public List<PaymentResponse> Payments { get; set; } = [];
+    }
 }
