@@ -14,7 +14,10 @@ public class HttpOrder
 
     public static async Task GetOrderByID(ModelPayment.CreatePaymentRequest request)
     {
-        var httpResponse = await _http.GetStringAsync($"https://localhost:5003/api/Order/getID/{request.OrderId}");
+        var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+        var host = environment == "Development" ? "localhost" : "paymart-orders";
+
+        var httpResponse = await _http.GetStringAsync($"http://{host}:5003/api/Order/getID/{request.OrderId}");
         request.OrderPrice = FormatterGetByID(httpResponse).Price;
     }
 
